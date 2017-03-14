@@ -3,14 +3,14 @@ var Schema = mongoose.Schema;
 
 //Generate new Schema object
 var userSchema = new Schema({
-  UfirstName: {type: String, required},
-  UlastName: {type: String, required},
+  UfirstName: {type: String, required:true},
+  UlastName: {type: String, required:true},
   UscreenName: {type: String},
   UcompanyName: {type: String},
   UcompanyFloor: {type: String},
   UlocationSpecialInstructions: {type: String},
-  UmPhoneCountry: {type: Number, required},
-  UmPhoneNumber: {type: Number, required},
+  UmPhoneCountry: {type: Number, required:true},
+  UmPhoneNumber: {type: Number, required:true},
   UmPhoneConfirmed: {type: Boolean},
   UmPhoneConfirmedDate: {type: String},
   UisCustomer: {type: Boolean},
