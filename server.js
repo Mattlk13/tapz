@@ -8,7 +8,7 @@ app.use(bodyParser.json());//default when using body-parser
 app.use(bodyParser.urlencoded({ extended: false }));//default when using body-parser
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://3tapz.com/api');
+mongoose.connect('mongodb://3tapz.com/Testing');
 // './' - this tells node that we are requiring a "local" module and not something we installed with NPM.
 var User = require("./models/userModel");
 var Tap = require("./models/tapModel");
@@ -19,8 +19,56 @@ app.get('/', function(req, res, next) {
 
 //============ API ROUTINGS========================================
 
+//add user to db
+app.post('/api/users', function (req, res, next) {
+  var user = new User(req.body);//create a new User instance with request.body params
+  user.save(function(err, user) {//save to DB
+    if (err) {
+      console.error(err);
+      return next(err);
+    } else {
+      res.send(user);//send new user
+    }
+  });
+});
 
 
+//get users list
+app.get('/api/users', function (req, res, next) {
+  User.find(function (error, users) {
+    if (error) {
+      console.error(error)
+      return next(error);
+    } else {
+      res.send(users);
+    }
+  });
+});
+
+//Add tap item to DB
+app.post('/api/taps', function (req, res, next) {
+  var tap = new Tap(req.body);//create a new Tap item instance with request.body params
+  tap.save(function(err, tap) {//save to DB
+    if (err) {
+      console.error(err);
+      return next(err);
+    } else {
+      res.send(tap);//send new tap item back
+    }
+  });
+});
+
+//get taps item list
+app.get('/api/taps', function (req, res, next) {
+  Tap.find(function (error, taps) {
+    if (error) {
+      console.error(error)
+      return next(error);
+    } else {
+      res.send(taps);
+    }
+  });
+});
 
 
 
