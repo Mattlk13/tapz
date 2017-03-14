@@ -1,3 +1,3 @@
-app.controller('',function ($scope ,  ){
+app.controller('mainController',function ($scope , tapzService  ){
 
 });

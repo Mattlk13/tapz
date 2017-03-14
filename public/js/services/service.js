@@ -1,3 +1,3 @@
-app.factory('{factory name}', function($http){
+app.factory('tapzService', function($http){
 
 });
