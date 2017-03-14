@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 //creating taps schema
-var tapsSchema = new Schema({
+var tapSchema = new Schema({
 
 });
 //creating  models of a schema objects
