@@ -12,6 +12,7 @@ mongoose.connect('mongodb://3tapz.com/Testing');
 // './' - this tells node that we are requiring a "local" module and not something we installed with NPM.
 var User = require("./models/userModel");
 var Tap = require("./models/tapModel");
+var Order = require("./models/orderModel");
 
 app.get('/', function(req, res, next) {
   res.send('Testing Server')
@@ -70,7 +71,42 @@ app.get('/api/taps', function (req, res, next) {
   });
 });
 
+//get taps item list
+app.get('/api/taps', function (req, res, next) {
+  Tap.find(function (error, taps) {
+    if (error) {
+      console.error(error)
+      return next(error);
+    } else {
+      res.send(taps);
+    }
+  });
+});
 
+//Add Order to the db
+app.post('/api/orders', function (req, res, next) {
+  var order = new Order(req.body);//create a new Tap item instance with request.body params
+  order.save(function(err, order) {//save to DB
+    if (err) {
+      console.error(err);
+      return next(err);
+    } else {
+      res.send(order);//send new tap item back
+    }
+  });
+});
+
+//get order list
+app.get('/api/orders', function (req, res, next) {
+  Order.find(function (error, orders) {
+    if (error) {
+      console.error(error)
+      return next(error);
+    } else {
+      res.send(orders);
+    }
+  });
+});
 
 
 
