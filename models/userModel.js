@@ -28,6 +28,7 @@ var userSchema = new Schema({
   UemailConfirmed: {type: String},
   UemailConfirmedDate: {type: String}
   Usince: {type: String},
+  Ukey:{type: String}
 
 });
 
